@@ -32,7 +32,7 @@ with st.sidebar:
                            'Parkinsons Prediction',
                            'Breast Cancer Prediction'
                            ],
-                          icons=['activity','heart','person'],
+                          icons=['activity','heart','person', 'app'],
                           default_index=0)
     
     

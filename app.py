@@ -57,8 +57,6 @@ if (selected == 'Diabetes Prediction'):
       
     with col2:
         Glucose = st.number_input('Glucose Level: 0 - 199',min_value=0,max_value=199,step=1)
-    if not Glucose:
-         st.warning("Please fill out so required fields")
     
     with col1:
         BloodPressure = st.number_input('Blood Pressure value: 0 - 122',min_value=0,max_value=122,step=1)

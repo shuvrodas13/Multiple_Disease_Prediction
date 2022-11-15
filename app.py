@@ -10,15 +10,18 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 
 
+
+
+
 # loading the saved models
 
-diabetes_model = pickle.load(open('diabetes_model.sav', 'rb'))
+diabetes_model = pickle.load(open('C:/Users/HP/Desktop/streamlit app/diabetes_model.sav', 'rb'))
 
-heart_disease_model = pickle.load(open('heart_disease_model.sav','rb'))
+heart_disease_model = pickle.load(open('C:/Users/HP/Desktop/streamlit app/heart_disease_model.sav','rb'))
 
-parkinsons_model = pickle.load(open('parkinsons_model.sav', 'rb'))
+parkinsons_model = pickle.load(open('C:/Users/HP/Desktop/streamlit app/parkinsons_model.sav', 'rb'))
 
-breastcancer_model = pickle.load(open('model.pkl', 'rb'))
+breastcancer_model = pickle.load(open('C:/Users/HP/Desktop/streamlit app/model.pkl', 'rb'))
 
 
 
@@ -32,7 +35,7 @@ with st.sidebar:
                            'Parkinsons Prediction',
                            'Breast Cancer Prediction'
                            ],
-                          icons=['activity','heart','person', 'app'],
+                          icons=['activity','heart','person'],
                           default_index=0)
     
     
@@ -44,31 +47,35 @@ if (selected == 'Diabetes Prediction'):
     
     
     # getting the input data from the user
-    col1, col2, col3 = st.columns(3)
+
+    col1, col2 = st.columns(2)
     
     with col1:
-        Pregnancies = st.text_input('Number of Pregnancies: 0 - 17')
-        
+        Pregnancies = st.number_input('Number of Pregnancies: 0 - 17, ',min_value=0,max_value=17,step=1)
+    if not Pregnancies:
+        st.warning("Please fill out so required fields")
+      
     with col2:
-        Glucose = st.text_input('Glucose Level: 0 - 199')
-    
-    with col3:
-        BloodPressure = st.text_input('Blood Pressure value: 0 - 122')
+        Glucose = st.number_input('Glucose Level: 0 - 199',min_value=0,max_value=199,step=1)
+    if not Glucose:
+         st.warning("Please fill out so required fields")
     
     with col1:
-        SkinThickness = st.text_input('Skin Thickness value: 0 - 99')
+        BloodPressure = st.number_input('Blood Pressure value: 0 - 122',min_value=0,max_value=122,step=1)
     
     with col2:
-        Insulin = st.text_input('Insulin Level: 0 - 846')
-    
-    with col3:
-        BMI = st.text_input('BMI value: 0 - 67.1')
+        SkinThickness = st.number_input('Skin Thickness value: 0 - 99',min_value=0,max_value=99,step=1)
     
     with col1:
-        DiabetesPedigreeFunction = st.text_input('Diabetes Pedigree Function value: 0.08 - 2.42')
+        Insulin = st.number_input('Insulin Level: 0 - 846',min_value=0,max_value=846,step=1)
     
     with col2:
-        Age = st.text_input('Age of the Person: 20 - 90')
+        BMI = st.number_input('BMI value: 0 - 67.1',min_value=0.00,max_value=67.1,step=0.00)
+    
+    with col1:
+        DiabetesPedigreeFunction = st.number_input('Diabetes Pedigree Function value: 0.08 - 2.42',min_value=0.08,max_value=2.42,step=0.08)
+    with col2:
+        Age = st.number_input('Age of the Person: 20 - 90',min_value=20,max_value=90,step=1)
     
     
     # code for Prediction
@@ -80,9 +87,9 @@ if (selected == 'Diabetes Prediction'):
         diab_prediction = diabetes_model.predict([[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]])
         
         if (diab_prediction[0] == 1):
-          diab_diagnosis = 'The person is diabetic'
+          diab_diagnosis = 'This  person has 99% chance of diabetes'
         else:
-          diab_diagnosis = 'The person is not diabetic'
+          diab_diagnosis = 'The person has not diabetes'
         
     st.success(diab_diagnosis)
 
@@ -93,6 +100,7 @@ if (selected == 'Diabetes Prediction'):
 if selected == 'Heart Disease Prediction':
     # page title
     st.title('Heart Disease Prediction')
+    
 
     col1, col2, col3 = st.columns(3)
 
@@ -106,13 +114,13 @@ if selected == 'Heart Disease Prediction':
         cp = st.number_input('Chest Pain types: 0 - 3')
 
     with col1:
-        trestbps = st.number_input('Resting Blood Pressure: 94 - 200')
+        trestbps = st.number_input('Resting Blood Pressure:min: 94 --- max:200')
 
     with col2:
-        chol = st.number_input('Serum Cholestoral in mg/dl: 126 - 564')
+        chol = st.number_input('Serum Cholestoral in mg/dl: 126 --- 564')
 
     with col3:
-        fbs = st.number_input('Fasting Blood Sugar > 120 mg/dl: 1(true) - 0(false)')
+        fbs = st.number_input('Fasting Blood Sugar > 120 mg/dl:  1(true) - 0(false)')
 
     with col1:
         restecg = st.number_input('Resting Electrocardiographic results(0 - 2)')
@@ -121,13 +129,13 @@ if selected == 'Heart Disease Prediction':
         thalach = st.number_input('Maximum Heart Rate achieved: 71 - 202')
 
     with col3:
-        exang = st.number_input('Exercise Induced Angina: 0 - 1')
+        exang = st.number_input('Exercise Induced Angina: 0(yes) --- 1(no)')
 
     with col1:
-        oldpeak = st.number_input('ST depression induced by exercise: 0 - 6.2')
+        oldpeak = st.number_input('ST depression  by exercise:   0 - 6.2')
 
     with col2:
-        slope = st.number_input('Slope of the peak exercise ST segment')
+        slope = st.number_input('Slope of the peak exercise ST segment    ')
 
     with col3:
         ca = st.number_input('Major vessels colored by flourosopy')
@@ -164,70 +172,70 @@ if (selected == "Parkinsons Prediction"):
     col1, col2, col3, col4, col5 = st.columns(5)  
     
     with col1:
-        fo = st.text_input('MDVP:Fo(Hz)')
+        fo = st.number_input('MDVP:Fo(Hz)')
         
     with col2:
-        fhi = st.text_input('MDVP:Fhi(Hz)')
+        fhi = st.number_input('MDVP:Fhi(Hz)')
         
     with col3:
-        flo = st.text_input('MDVP:Flo(Hz)')
+        flo = st.number_input('MDVP:Flo(Hz)')
         
     with col4:
-        Jitter_percent = st.text_input('MDVP:Jitter(%)')
+        Jitter_percent = st.number_input('MDVP:Jitter(%)')
         
     with col5:
-        Jitter_Abs = st.text_input('MDVP:Jitter(Abs)')
+        Jitter_Abs = st.number_input('MDVP:Jitter(Abs)')
         
     with col1:
-        RAP = st.text_input('MDVP:RAP')
+        RAP = st.number_input('MDVP:RAP')
         
     with col2:
-        PPQ = st.text_input('MDVP:PPQ')
+        PPQ = st.number_input('MDVP:PPQ')
         
     with col3:
-        DDP = st.text_input('Jitter:DDP')
+        DDP = st.number_input('Jitter:DDP')
         
     with col4:
-        Shimmer = st.text_input('MDVP:Shimmer')
+        Shimmer = st.number_input('MDVP:Shimmer')
         
     with col5:
-        Shimmer_dB = st.text_input('MDVP:Shimmer(dB)')
+        Shimmer_dB = st.number_input('MDVP:Shimmer(dB)')
         
     with col1:
-        APQ3 = st.text_input('Shimmer:APQ3')
+        APQ3 = st.number_input('Shimmer:APQ3')
         
     with col2:
-        APQ5 = st.text_input('Shimmer:APQ5')
+        APQ5 = st.number_input('Shimmer:APQ5')
         
     with col3:
-        APQ = st.text_input('MDVP:APQ')
+        APQ = st.number_input('MDVP:APQ')
         
     with col4:
-        DDA = st.text_input('Shimmer:DDA')
+        DDA = st.number_input('Shimmer:DDA')
         
     with col5:
-        NHR = st.text_input('NHR')
+        NHR = st.number_input('NHR')
         
     with col1:
-        HNR = st.text_input('HNR')
+        HNR = st.number_input('HNR')
         
     with col2:
-        RPDE = st.text_input('RPDE')
+        RPDE = st.number_input('RPDE')
         
     with col3:
-        DFA = st.text_input('DFA')
+        DFA = st.number_input('DFA')
         
     with col4:
-        spread1 = st.text_input('spread1')
+        spread1 = st.number_input('spread1')
         
     with col5:
-        spread2 = st.text_input('spread2')
+        spread2 = st.number_input('spread2')
         
     with col1:
-        D2 = st.text_input('D2')
+        D2 = st.number_input('D2')
         
     with col2:
-        PPE = st.text_input('PPE')
+        PPE = st.number_input('PPE')
         
     
     
@@ -250,34 +258,34 @@ if (selected == 'Breast Cancer Prediction'):
         
         # page title
         st.title('Breast Cancer Prediction using ML')
-        col1, col2, col3 , col4 = st.columns(4)
+        col1, col2, col3  = st.columns(3)
 
         with col1:
-            clump_thickness = st.text_input('Clump Thickness: 1 - 10')
+            clump_thickness = st.number_input('Clump Thickness: 1 - 10')
 
         with col2:
-            uniform_cell_size = st.text_input(' Uniformity of Cell Size: 1 - 10')
+            uniform_cell_size = st.number_input(' Uniformity of Cell Size: 1 - 10')
             
         with col3:
-             uniform_cell_shape = st.text_input('Uniformity of Cell Shape: 1 - 10')
-
-        with col4:
-            marginal_adhesion = st.text_input('Marginal Adhesion: 1 - 10')
+             uniform_cell_shape = st.number_input('Uniformity of Cell Shape: 1 - 10')
 
         with col1:
-            single_epithelial_size = st.text_input('Single Epithelial Cell Size: 1 - 10')
+            marginal_adhesion = st.number_input('Marginal Adhesion: 1 - 10')
 
         with col2:
-            bare_nuclei = st.text_input('Bare Nuclei: 1 - 10')
+            single_epithelial_size = st.number_input('Single Epithelial Cell Size: 1 - 10')
 
         with col3:
-            bland_chromatin = st.text_input('Bland Chromatin: 1 - 10')
-
-        with col4:
-            normal_nucleoli = st.text_input('normal_nucleoli: 1 - 10')
+            bare_nuclei = st.number_input('Bare Nuclei: 1 - 10')
 
         with col1:
-            mitoses = st.text_input("mitoses: 1-10")
+            bland_chromatin = st.number_input('Bland Chromatin: 1 - 10')
+
+        with col2:
+            normal_nucleoli = st.number_input('normal_nucleoli: 1 - 10')
+
+        with col3:
+            mitoses = st.number_input("mitoses: 1-10")
 
       
 

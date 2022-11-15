@@ -15,13 +15,13 @@ from streamlit_option_menu import option_menu
 
 # loading the saved models
 
-diabetes_model = pickle.load(open('diabetes_model.sav', 'rb'))
+diabetes_model = pickle.load(open('C:/Users/HP/Desktop/streamlit app/diabetes_model.sav', 'rb'))
 
-heart_disease_model = pickle.load(open('heart_disease_model.sav','rb'))
+heart_disease_model = pickle.load(open('C:/Users/HP/Desktop/streamlit app/heart_disease_model.sav','rb'))
 
-parkinsons_model = pickle.load(open('parkinsons_model.sav', 'rb'))
+parkinsons_model = pickle.load(open('C:/Users/HP/Desktop/streamlit app/parkinsons_model.sav', 'rb'))
 
-breastcancer_model = pickle.load(open('model.pkl', 'rb'))
+breastcancer_model = pickle.load(open('C:/Users/HP/Desktop/streamlit app/model.pkl', 'rb'))
 
 
 
@@ -52,8 +52,6 @@ if (selected == 'Diabetes Prediction'):
     
     with col1:
         Pregnancies = st.number_input('Number of Pregnancies: 0 - 17, ',min_value=0,max_value=17,step=1)
-    if not Pregnancies:
-        st.warning("Please fill out so required fields")
       
     with col2:
         Glucose = st.number_input('Glucose Level: 0 - 199',min_value=0,max_value=199,step=1)
@@ -75,7 +73,7 @@ if (selected == 'Diabetes Prediction'):
     with col2:
         Age = st.number_input('Age of the Person: 20 - 90',min_value=20,max_value=90,step=1)
     
-    
+
     # code for Prediction
     diab_diagnosis = ''
     
@@ -103,34 +101,34 @@ if selected == 'Heart Disease Prediction':
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        age = st.number_input('Age:29-77')
+        age = st.number_input('Age:29-77',min_value=29,max_value=77,step=1)
 
     with col2:
-        sex = st.number_input('Sex: 1(male)-0(female)')
+        sex = st.number_input('Sex: 1(male)-0(female)',min_value=0,max_value=1,step=1)
 
     with col3:
-        cp = st.number_input('Chest Pain types: 0 - 3')
+        cp = st.number_input('Chest Pain types: 0 - 3',min_value=0,max_value=3,step=1)
 
     with col1:
-        trestbps = st.number_input('Resting Blood Pressure:min: 94 --- max:200')
+        trestbps = st.number_input('Resting Blood Pressure:min: 94 --- max:200', min_value=90,max_value=200,step=1)
 
     with col2:
-        chol = st.number_input('Serum Cholestoral in mg/dl: 126 --- 564')
+        chol = st.number_input('Serum Cholestoral in mg/dl: 126 --- 564',min_value=126,max_value=564,step=1)
 
     with col3:
-        fbs = st.number_input('Fasting Blood Sugar > 120 mg/dl:  1(true) - 0(false)')
+        fbs = st.number_input('Fasting Blood Sugar > 120 mg/dl:  1(true) - 0(false)',min_value=0,max_value=1,step=1)
 
     with col1:
-        restecg = st.number_input('Resting Electrocardiographic results(0 - 2)')
+        restecg = st.number_input('Resting Electrocardiographic results(0 - 2)',min_value=0,max_value=2,step=1)
 
     with col2:
-        thalach = st.number_input('Maximum Heart Rate achieved: 71 - 202')
+        thalach = st.number_input('Maximum Heart Rate achieved: 71 - 202',min_value=71,max_value=202,step=1)
 
     with col3:
-        exang = st.number_input('Exercise Induced Angina: 0(yes) --- 1(no)')
+        exang = st.number_input('Exercise Induced Angina: 0(yes) --- 1(no)',min_value=0,max_value=1,step=1)
 
     with col1:
-        oldpeak = st.number_input('ST depression  by exercise:   0 - 6.2')
+        oldpeak = st.number_input('ST depression  by exercise:   0 - 6.2',min_value=0.00,max_value=6.2,step=0.00)
 
     with col2:
         slope = st.number_input('Slope of the peak exercise ST segment    ')
@@ -259,31 +257,31 @@ if (selected == 'Breast Cancer Prediction'):
         col1, col2, col3  = st.columns(3)
 
         with col1:
-            clump_thickness = st.number_input('Clump Thickness: 1 - 10')
+            clump_thickness = st.number_input('Clump Thickness: 1 - 10',min_value=0,max_value=10,step=1)
 
         with col2:
-            uniform_cell_size = st.number_input(' Uniformity of Cell Size: 1 - 10')
+            uniform_cell_size = st.number_input(' Uniformity of Cell Size: 1 - 10',min_value=0,max_value=10,step=1)
             
         with col3:
-             uniform_cell_shape = st.number_input('Uniformity of Cell Shape: 1 - 10')
+             uniform_cell_shape = st.number_input('Uniformity of Cell Shape: 1 - 10',min_value=0,max_value=10,step=1)
 
         with col1:
-            marginal_adhesion = st.number_input('Marginal Adhesion: 1 - 10')
+            marginal_adhesion = st.number_input('Marginal Adhesion: 1 - 10',min_value=0,max_value=10,step=1)
 
         with col2:
-            single_epithelial_size = st.number_input('Single Epithelial Cell Size: 1 - 10')
+            single_epithelial_size = st.number_input('Single Epithelial Cell Size: 1 - 10',min_value=0,max_value=10,step=1)
 
         with col3:
-            bare_nuclei = st.number_input('Bare Nuclei: 1 - 10')
+            bare_nuclei = st.number_input('Bare Nuclei: 1 - 10',min_value=0,max_value=10,step=1)
 
         with col1:
-            bland_chromatin = st.number_input('Bland Chromatin: 1 - 10')
+            bland_chromatin = st.number_input('Bland Chromatin: 1 - 10',min_value=0,max_value=10,step=1)
 
         with col2:
-            normal_nucleoli = st.number_input('normal_nucleoli: 1 - 10')
+            normal_nucleoli = st.number_input('normal_nucleoli: 1 - 10',min_value=0,max_value=10,step=1)
 
         with col3:
-            mitoses = st.number_input("mitoses: 1-10")
+            mitoses = st.number_input("mitoses: 1-10",min_value=0,max_value=10,step=1)
 
       
 

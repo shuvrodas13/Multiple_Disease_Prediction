@@ -15,13 +15,13 @@ from streamlit_option_menu import option_menu
 
 # loading the saved models
 
-diabetes_model = pickle.load(open('diabetes_model.sav', 'rb'))
+diabetes_model = pickle.load(open('C:/Users/HP/Desktop/streamlit app/diabetes_model.sav', 'rb'))
 
-heart_disease_model = pickle.load(open('heart_disease_model.sav','rb'))
+heart_disease_model = pickle.load(open('C:/Users/HP/Desktop/streamlit app/heart_disease_model.sav','rb'))
 
-parkinsons_model = pickle.load(open('parkinsons_model.sav', 'rb'))
+parkinsons_model = pickle.load(open('C:/Users/HP/Desktop/streamlit app/parkinsons_model.sav', 'rb'))
 
-breastcancer_model = pickle.load(open('model.pkl', 'rb'))
+breastcancer_model = pickle.load(open('C:/Users/HP/Desktop/streamlit app/model.pkl', 'rb'))
 
 
 
@@ -35,7 +35,7 @@ with st.sidebar:
                            'Parkinsons Prediction',
                            'Breast Cancer Prediction'
                            ],
-                          icons=['activity','heart','person','person'],
+                          icons=['activity','heart','person','man-health-worker'],
                           default_index=0)
     
     
@@ -86,6 +86,7 @@ if (selected == 'Diabetes Prediction'):
           diab_diagnosis = 'This  person has 99% chance of diabetes'
         else:
           diab_diagnosis = 'The person has not diabetes'
+        
         
     st.success(diab_diagnosis)
 
@@ -151,7 +152,7 @@ if selected == 'Heart Disease Prediction':
         heart_prediction = heart_disease_model.predict([[age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal]])
 
         if heart_prediction[0] == 1:
-            heart_diagnosis = 'The person is having heart disease'
+            heart_diagnosis = 'This  person has 98% chance of  heart disease'
         else:
             heart_diagnosis = 'The person does not have any heart disease'
 
@@ -242,10 +243,10 @@ if (selected == "Parkinsons Prediction"):
     if st.button("Parkinson's Test Result"):
         parkinsons_prediction = parkinsons_model.predict([[fo, fhi, flo, Jitter_percent, Jitter_Abs, RAP, PPQ,DDP,Shimmer,Shimmer_dB,APQ3,APQ5,APQ,DDA,NHR,HNR,RPDE,DFA,spread1,spread2,D2,PPE]])                          
         
-        if (parkinsons_prediction[0] == 1):
-          parkinsons_diagnosis = "The person has Parkinson's disease"
-        else:
+        if (parkinsons_prediction[0] == 0):
           parkinsons_diagnosis = "The person does not have Parkinson's disease"
+        else:
+          parkinsons_diagnosis = "This  person has 94% chance of  Parkinson's disease"
         
     st.success(parkinsons_diagnosis)
     
@@ -297,10 +298,10 @@ if (selected == 'Breast Cancer Prediction'):
        marginal_adhesion, single_epithelial_size, bare_nuclei,
        bland_chromatin, normal_nucleoli, mitoses]])                          
             
-            if (breastcancer_prediction[0] == 2):
-              breastcancer_diagnosis = "The person has benign Breast Cancer"
+            if (breastcancer_prediction[0] == 4):
+              breastcancer_diagnosis = "This  person has 97% chance of  malignant Breast Cancer"
             else:
-              breastcancer_diagnosis = "The person have malignant Breast Cancer"
+              breastcancer_diagnosis = "The person does not have any Breast Cancer"
             
         st.success(breastcancer_diagnosis)
  

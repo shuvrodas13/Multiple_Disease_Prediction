@@ -15,13 +15,13 @@ from streamlit_option_menu import option_menu
 
 # loading the saved models
 
-diabetes_model = pickle.load(open('diabetes_model.sav', 'rb'))
+diabetes_model = pickle.load(open('C:/Users/HP/Desktop/streamlit app/diabetes_model.sav', 'rb'))
 
-heart_disease_model = pickle.load(open('heart_disease_model.sav','rb'))
+heart_disease_model = pickle.load(open('C:/Users/HP/Desktop/streamlit app/heart_disease_model.sav','rb'))
 
-parkinsons_model = pickle.load(open('parkinsons_model.sav', 'rb'))
+parkinsons_model = pickle.load(open('C:/Users/HP/Desktop/streamlit app/parkinsons_model.sav', 'rb'))
 
-breastcancer_model = pickle.load(open('model.pkl', 'rb'))
+breastcancer_model = pickle.load(open('C:/Users/HP/Desktop/streamlit app/model.pkl', 'rb'))
 
 
 
@@ -35,7 +35,7 @@ with st.sidebar:
                            'Parkinsons Prediction',
                            'Breast Cancer Prediction'
                            ],
-                          icons=['activity','heart','person','activity'],
+                          icons=['activity','heart','person','man-health-worker'],
                           default_index=0)
     
     
@@ -169,70 +169,70 @@ if (selected == "Parkinsons Prediction"):
     col1, col2, col3, col4, col5 = st.columns(5)  
     
     with col1:
-        fo = st.number_input('MDVP:Fo(Hz)')
+        fo = st.number_input('MDVP:Fo(Hz)',step=1e-6,format="%.5f")
         
     with col2:
-        fhi = st.number_input('MDVP:Fhi(Hz)')
+        fhi = st.number_input('MDVP:Fhi(Hz)',step=1e-6,format="%.5f")
         
     with col3:
-        flo = st.number_input('MDVP:Flo(Hz)')
+        flo = st.number_input('MDVP:Flo(Hz)',step=1e-6,format="%.5f")
         
     with col4:
-        Jitter_percent = st.number_input('MDVP:Jitter(%)')
+        Jitter_percent = st.number_input('MDVP:Jitter(%)',step=1e-6,format="%.5f")
         
     with col5:
-        Jitter_Abs = st.number_input('MDVP:Jitter(Abs)')
+        Jitter_Abs = st.number_input('MDVP:Jitter(Abs)',step=1e-6,format="%.5f")
         
     with col1:
-        RAP = st.number_input('MDVP:RAP')
+        RAP = st.number_input('MDVP:RAP',step=1e-6,format="%.5f")
         
     with col2:
-        PPQ = st.number_input('MDVP:PPQ')
+        PPQ = st.number_input('MDVP:PPQ',step=1e-6,format="%.5f")
         
     with col3:
-        DDP = st.number_input('Jitter:DDP')
+        DDP = st.number_input('Jitter:DDP',step=1e-6,format="%.5f")
         
     with col4:
-        Shimmer = st.number_input('MDVP:Shimmer')
+        Shimmer = st.number_input('MDVP:Shimmer',step=1e-6,format="%.5f")
         
     with col5:
-        Shimmer_dB = st.number_input('MDVP:Shimmer(dB)')
+        Shimmer_dB = st.number_input('MDVP:Shimmer(dB)',step=1e-6,format="%.5f")
         
     with col1:
-        APQ3 = st.number_input('Shimmer:APQ3')
+        APQ3 = st.number_input('Shimmer:APQ3',step=1e-6,format="%.5f")
         
     with col2:
-        APQ5 = st.number_input('Shimmer:APQ5')
+        APQ5 = st.number_input('Shimmer:APQ5',step=1e-6,format="%.5f")
         
     with col3:
-        APQ = st.number_input('MDVP:APQ')
+        APQ = st.number_input('MDVP:APQ',step=1e-6,format="%.5f")
         
     with col4:
-        DDA = st.number_input('Shimmer:DDA')
+        DDA = st.number_input('Shimmer:DDA',step=1e-6,format="%.5f")
         
     with col5:
-        NHR = st.number_input('NHR')
+        NHR = st.number_input('NHR',step=1e-6,format="%.5f")
         
     with col1:
-        HNR = st.number_input('HNR')
+        HNR = st.number_input('HNR',step=1e-6,format="%.5f")
         
     with col2:
-        RPDE = st.number_input('RPDE')
+        RPDE = st.number_input('RPDE',step=1e-6,format="%.5f")
         
     with col3:
-        DFA = st.number_input('DFA')
+        DFA = st.number_input('DFA',step=1e-6,format="%.5f")
         
     with col4:
-        spread1 = st.number_input('spread1')
+        spread1 = st.number_input('spread1',step=1e-6,format="%.5f")
         
     with col5:
-        spread2 = st.number_input('spread2')
+        spread2 = st.number_input('spread2',step=1e-6,format="%.5f")
         
     with col1:
-        D2 = st.number_input('D2')
+        D2 = st.number_input('D2',step=1e-6,format="%.5f")
         
     with col2:
-        PPE = st.number_input('PPE')
+        PPE = st.number_input('PPE',step=1e-6,format="%.5f")
         
     
     

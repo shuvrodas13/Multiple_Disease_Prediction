@@ -1,14 +1,3 @@
-Your Streamlit app code looks well-structured, but it needs a few corrections and enhancements for proper functioning and user experience improvement. Here are some suggestions:
-
-1. **Correct Step Values for Number Inputs**: The `step` value should be consistent with the data type. For example, steps for floating-point numbers should be appropriate decimals.
-
-2. **Fixing Breast Cancer Prediction Input and Logic**: The input limits for breast cancer features should start from 1 as mentioned in the input description.
-
-3. **Enhance Prediction Message**: It's better to have more user-friendly and informative messages.
-
-Here is the corrected and enhanced version of your code:
-
-```python
 # -*- coding: utf-8 -*-
 """
 Created on Sat Nov 12 13:27:27 2022
@@ -155,4 +144,57 @@ if selected == "Parkinsons Prediction":
     with col3:
         DFA = st.number_input('DFA', step=1e-5, format="%.5f")
     with col4:
-        spread1 = st.number_input('spread1', step=1e-5
+        spread1 = st.number_input('spread1', step=1e-5, format="%.5f")
+    with col5:
+        spread2 = st.number_input('spread2', step=1e-5, format="%.5f")
+    with col1:
+        D2 = st.number_input('D2', step=1e-5, format="%.5f")
+    with col2:
+        PPE = st.number_input('PPE', step=1e-5, format="%.5f")
+
+    parkinsons_diagnosis = ''
+    if st.button("Parkinson's Test Result"):
+        parkinsons_prediction = parkinsons_model.predict([[fo, fhi, flo, Jitter_percent, Jitter_Abs, RAP, PPQ, DDP, Shimmer, Shimmer_dB, APQ3, APQ5, APQ, DDA, NHR, HNR, RPDE, DFA, spread1, spread2, D2, PPE]])
+        if parkinsons_prediction[0] == 1:
+            parkinsons_diagnosis = "This person has a high chance of Parkinson's disease."
+        else:
+            parkinsons_diagnosis = "This person is unlikely to have Parkinson's disease."
+        
+    st.success(parkinsons_diagnosis)
+
+# Breast Cancer Prediction Page
+if selected == 'Breast Cancer Prediction':
+    st.title('Breast Cancer Prediction using ML')
+
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        clump_thickness = st.number_input('Clump Thickness:', min_value=1, max_value=10, step=1)
+    with col2:
+        uniform_cell_size = st.number_input('Uniformity of Cell Size:', min_value=1, max_value=10, step=1)
+    with col3:
+        uniform_cell_shape = st.number_input('Uniformity of Cell Shape:', min_value=1, max_value=10, step=1)
+    with col1:
+        marginal_adhesion = st.number_input('Marginal Adhesion:', min_value=1, max_value=10, step=1)
+    with col2:
+        single_epithelial_size = st.number_input('Single Epithelial Cell Size:', min_value=1, max_value=10, step=1)
+    with col3:
+        bare_nuclei = st.number_input('Bare Nuclei:', min_value=1, max_value=10, step=1)
+    with col1:
+        bland_chromatin = st.number_input('Bland Chromatin:', min_value=1, max_value=10, step=1)
+    with col2:
+        normal_nucleoli = st.number_input('Normal Nucleoli:', min_value=1, max_value=10, step=1)
+    with col3:
+        mitoses = st.number_input('Mitoses:', min_value=1, max_value=10, step=1)
+
+    breastcancer_diagnosis = ''
+    if st.button("Breast Cancer Test Result"):
+        breastcancer_prediction = breastcancer_model.predict([[clump_thickness, uniform_cell_size, uniform_cell_shape,
+                                                               marginal_adhesion, single_epithelial_size, bare_nuclei,
+                                                               bland_chromatin, normal_nucleoli, mitoses]])
+        if breastcancer_prediction[0] == 1:
+            breastcancer_diagnosis = "This person has a high chance of malignant breast cancer."
+        else:
+            breastcancer_diagnosis = "This person is unlikely to have breast cancer."
+        
+    st.success(breastcancer_diagnosis)

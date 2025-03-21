@@ -13,19 +13,17 @@ from streamlit_option_menu import option_menu
 
 
 
-# loading the saved models
 
-diabetes_model = pickle.load(open('diabetes_model.sav', 'rb'))
+diabetes_model = pickle.load(open('C:/Users/HP/Desktop/streamlit app/diabetes_model.sav', 'rb'))
 
-heart_disease_model = pickle.load(open('heart_disease_model.sav','rb'))
+heart_disease_model = pickle.load(open('C:/Users/HP/Desktop/streamlit app/heart_disease_model.sav','rb'))
 
-parkinsons_model = pickle.load(open('parkinsons_model.sav', 'rb'))
+parkinsons_model = pickle.load(open('C:/Users/HP/Desktop/streamlit app/parkinsons_model.sav', 'rb'))
 
-breastcancer_model = pickle.load(open('model.pkl', 'rb'))
-
+breastcancer_model = pickle.load(open('C:/Users/HP/Desktop/streamlit app/model.pkl', 'rb'))
 
 
-# sidebar for navigation
+
 with st.sidebar:
     
     selected = option_menu('Multiple Disease Prediction System',
@@ -42,11 +40,11 @@ with st.sidebar:
 # Diabetes Prediction Page
 if (selected == 'Diabetes Prediction'):
     
-    # page title
+
     st.title('Diabetes Prediction using ML')
     
     
-    # getting the input data from the user
+
 
     col1, col2 = st.columns(2)
     
@@ -74,10 +72,10 @@ if (selected == 'Diabetes Prediction'):
         Age = st.number_input('Age of the Person: 20 - 90',min_value=20,max_value=90,step=1)
     
 
-    # code for Prediction
+    
     diab_diagnosis = ''
     
-    # creating a button for Prediction
+    
     
     if st.button('Diabetes Test Result'):
         diab_prediction = diabetes_model.predict([[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]])
@@ -93,9 +91,9 @@ if (selected == 'Diabetes Prediction'):
 
 
 
-# Heart Disease Prediction Page
+# Heart Disease Prediction
 if selected == 'Heart Disease Prediction':
-    # page title
+
     st.title('Heart Disease Prediction')
     
 
@@ -143,10 +141,10 @@ if selected == 'Heart Disease Prediction':
     # heart_disease_params = [age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal]
     # heart_disease_int = [int(item) for item in heart_disease_params]
 
-    # code for Prediction
+    
     heart_diagnosis = ''
 
-    # creating a button for Prediction
+    
 
     if st.button('Heart Disease Test Result'):
         heart_prediction = heart_disease_model.predict([[age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal]])
@@ -160,10 +158,10 @@ if selected == 'Heart Disease Prediction':
     
     
 
-# Parkinson's Prediction Page
+
 if (selected == "Parkinsons Prediction"):
     
-    # page title
+    
     st.title("Parkinson's Disease Prediction using ML")
     
     col1, col2, col3, col4, col5 = st.columns(5)  
@@ -236,10 +234,10 @@ if (selected == "Parkinsons Prediction"):
         
     
     
-    # code for Prediction
+
     parkinsons_diagnosis = ''
     
-    # creating a button for Prediction    
+       
     if st.button("Parkinson's Test Result"):
         parkinsons_prediction = parkinsons_model.predict([[fo, fhi, flo, Jitter_percent, Jitter_Abs, RAP, PPQ,DDP,Shimmer,Shimmer_dB,APQ3,APQ5,APQ,DDA,NHR,HNR,RPDE,DFA,spread1,spread2,D2,PPE]])                          
         
@@ -253,7 +251,7 @@ if (selected == "Parkinsons Prediction"):
  # Breast Cancer prediction
 if (selected == 'Breast Cancer Prediction'):
         
-        # page title
+        
         st.title('Breast Cancer Prediction using ML')
         col1, col2, col3  = st.columns(3)
 
@@ -289,10 +287,10 @@ if (selected == 'Breast Cancer Prediction'):
       
         
         
-        # code for Prfediction
+        
         breastcancer_diagnosis = ''
         
-        # creating a button for Prediction    
+        
         if st.button("Breast Cancer Test Result"):
             breastcancer_prediction = breastcancer_model.predict([[clump_thickness, uniform_cell_size, uniform_cell_shape,
        marginal_adhesion, single_epithelial_size, bare_nuclei,

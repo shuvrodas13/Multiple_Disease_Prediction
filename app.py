@@ -32,7 +32,7 @@ with st.sidebar:
                            'Parkinsons Prediction',
                            'Breast Cancer Prediction'
                            ],
-                          icons=['activity','heart','person'],
+                          icons=['activity','heart','person','person'],
                           default_index=0)
     
     
@@ -77,14 +77,12 @@ if (selected == 'Diabetes Prediction'):
     # creating a button for Prediction
     
     if st.button('Diabetes Test Result'):
-        diab_prediction = diabetes_model.predict([[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]])
-        
-        if (diab_prediction[0] == 1):
-          diab_diagnosis = 'The person is diabetic'
-        else:
-          diab_diagnosis = 'The person is not diabetic'
-        
-    st.success(diab_diagnosis)
+    try:
+        input_data = [float(Pregnancies), float(Glucose), float(BloodPressure), float(SkinThickness),
+                      float(Insulin), float(BMI), float(DiabetesPedigreeFunction), float(Age)]
+
+        diab_prediction = diabetes_model.predict([input_data])
+
 
 
 
